@@ -1,7 +1,8 @@
-FROM hypriot/rpi-alpine-scratch
-MAINTAINER Daniel S.
+FROM hypriot/rpi-alpine-scratch:v3.4
 
-RUN apk update && apk upgrade && apk add bash samba-common-tools samba && rm -rf /var/cache/apk/*
+RUN apk --no-cache add \
+  bash \
+  samba-common-tools samba
 
 COPY run.sh /run.sh
 RUN chmod u+x /run.sh

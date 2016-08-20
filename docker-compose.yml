@@ -1,0 +1,23 @@
+version: "2"
+
+services:
+  samba:
+    image: rpi-samba
+    build: .
+    restart: always
+    hostname: sambu
+    ports:
+      - "137:137/udp"
+      - "138:138/udp"
+      - "139:139"
+      - "445:445"
+      - "445:445/udp"
+    volumes:
+      - /data0:/data0
+    command:
+      - -u
+      - "alice:abc12345"
+      - -u
+      - "bob:secret"
+      - -s
+      - "data0:/data0:rw:alice,bob"
